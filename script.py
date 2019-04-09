@@ -2,17 +2,17 @@ import fileinput
 import re
 import sys
 
-print sys.argv[0]
-print sys.argv[1]
-print sys.argv[2]
-
 log_file_path = sys.argv[1]
-new_log_file_path = sys.argv[2]
+#new_log_file_path = sys.argv[2]
 
 
 #regex = '[-+]?[0-9]+\:[-+]?[0-9]+\:[-+]?[0-9]+\:[-+]?[0-9]+$'
-#regex = '(?:(?!\:)(?:.|\n))*\:(?:(?!\:)(?:.|\n))*\:(?:(?!\:)(?:.|\n))*\:'
-regex = '[0-9]+\:[0-9]+\:[0-9]+(\.|\:)[0-9]+'
+#regex = '[0-9]+\:[0-9]+\:[0-9]+(\.|\:)[0-9]+'
+#regex = '0x[0-9]{0,3}([a-z]|[A-Z]|[0-9]){0,4}'
+#regex = '\s[0-9].[0-9]{6}\sms'
+
+regex = '((=\s[0-9]{0,3}.[0-9]{6,10}\sms)|(0x[0-9]{0,3}([a-z]|[A-Z]|[0-9]){0,4})|([0-9]+\:[0-9]+\:[0-9]+(\.|\:)[0-9]+))'
+
 pattern = re.compile(regex)
 
 #log_file_path = '/home/ezchaal/a_id.out'
@@ -33,7 +33,7 @@ for line in log_file:
   #print line
  
 #new_log_file_path = '/home/ezchaal/sample_id.parsed'
-new_log_file = open (new_log_file_path, 'w')
+new_log_file = open (log_file_path+"_parsed", 'w')
 
 new_log_file.writelines(file_buffer)
 
